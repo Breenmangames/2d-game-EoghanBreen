@@ -834,7 +834,36 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SPA_Player_Bronze_0: 2488088830809567171
+      SPA_Player_Bronze_1: -2640284806513076915
+      SPA_Player_Bronze_10: -6170769858855199568
+      SPA_Player_Bronze_11: -315747348674185649
+      SPA_Player_Bronze_12: 2416688203243239708
+      SPA_Player_Bronze_13: 1634205414239507378
+      SPA_Player_Bronze_14: -6262384822871017551
+      SPA_Player_Bronze_15: 2047848547780040835
+      SPA_Player_Bronze_16: 80136726447042936
+      SPA_Player_Bronze_17: -2218748618997330986
+      SPA_Player_Bronze_18: 4651517256333886664
+      SPA_Player_Bronze_19: -7213528596450025339
+      SPA_Player_Bronze_2: 1132487068671006181
+      SPA_Player_Bronze_20: 1413615282344054695
+      SPA_Player_Bronze_21: 4615050652914417027
+      SPA_Player_Bronze_22: -580628586013475817
+      SPA_Player_Bronze_23: 2489941455324945309
+      SPA_Player_Bronze_24: 6919817566427893470
+      SPA_Player_Bronze_25: 2919483066681141321
+      SPA_Player_Bronze_26: 7068890707990600510
+      SPA_Player_Bronze_27: 829687271454895745
+      SPA_Player_Bronze_28: -7223414923167604175
+      SPA_Player_Bronze_3: -2885548991918960984
+      SPA_Player_Bronze_4: 8039568162391729352
+      SPA_Player_Bronze_5: -7894484093430313499
+      SPA_Player_Bronze_6: 4801536866229146781
+      SPA_Player_Bronze_7: -7291863580970782743
+      SPA_Player_Bronze_8: 4350300308539500334
+      SPA_Player_Bronze_9: -540952499139488093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

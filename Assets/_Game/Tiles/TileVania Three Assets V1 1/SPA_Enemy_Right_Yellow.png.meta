@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SPA_Enemy_Right_Yellow_0: 617764662413310538
+      SPA_Enemy_Right_Yellow_1: -1256514926983273861
+      SPA_Enemy_Right_Yellow_2: 6761070917715864121
+      SPA_Enemy_Right_Yellow_3: -2983169258475085086
+      SPA_Enemy_Right_Yellow_4: -9035703130704269165
+      SPA_Enemy_Right_Yellow_5: -4984833111409434332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
