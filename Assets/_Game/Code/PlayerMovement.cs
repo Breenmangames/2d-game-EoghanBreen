@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Rigidbody2D rb;
     [SerializeField] float moveSpeed;
+    [SerializeField] float jumpForce;
     Animator myAnimator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipPlayer();
+        
     }
 
     void OnMove(InputValue value)  // Input System action callback to get movement input
@@ -41,6 +43,14 @@ public class PlayerMovement : MonoBehaviour
         if (playerHasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.linearVelocity.x), 1f); // Flip player sprite based on movement direction
+        }
+    }
+
+    void onJump(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
 }
