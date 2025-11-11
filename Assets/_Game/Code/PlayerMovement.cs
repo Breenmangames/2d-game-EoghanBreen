@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.Windows;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,12 +14,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbingSpeed;
     Animator myAnimator;
     CapsuleCollider2D capsuleCollider2D;
+    InputAction jumpAction;
+    InputActionAsset inputActionAsset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        inputActionAsset = InputSystem.actions;
+        jumpAction = InputSystem.actions.FindAction("Jump");
     }
 
     // Update is called once per frame
@@ -27,7 +32,19 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipPlayer();
         ClimbLadder();
-        
+
+        if (jumpAction.IsPressed())
+        {
+            //if (!capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            //{
+            //    return;
+            //}
+            if (jumpAction.IsPressed())
+            {
+                rb.linearVelocity += new Vector2(0f, jumpForce);
+            }
+        }
+        //OnJump();
     }
 
     void OnMove(InputValue value)  // Input System action callback to get movement input
@@ -53,16 +70,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnJump(InputValue value)
+    void OnJump(InputValue input)
     {
         if (!capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
-        if(value.isPressed)
+        if(input.isPressed)
         {
             rb.linearVelocity += new Vector2(0f, jumpForce);
-            Debug.Log("OnJump  " + value.isPressed);
+            
         } 
     }
     void ClimbLadder()
