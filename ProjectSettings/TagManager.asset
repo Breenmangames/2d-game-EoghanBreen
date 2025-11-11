@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Climbing
   - Water
   - UI
   - Player
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 2722156201
+    locked: 0
+  - name: Climbing
+    uniqueID: 977002933
     locked: 0
   - name: PLayer
     uniqueID: 425629465
