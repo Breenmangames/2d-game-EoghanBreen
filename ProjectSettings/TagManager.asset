@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Ground
-  - 
+  - Background
   - 
   - 
   - 
@@ -53,7 +53,7 @@ TagManager:
   - name: Climbing
     uniqueID: 977002933
     locked: 0
-  - name: PLayer
+  - name: Player
     uniqueID: 425629465
     locked: 0
   m_RenderingLayers:

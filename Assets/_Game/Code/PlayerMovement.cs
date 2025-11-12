@@ -7,21 +7,27 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 movement;
-    Rigidbody2D rb;
+   
     [SerializeField] float moveSpeed;    
     [SerializeField] float jumpForce; 
     [SerializeField] float climbingSpeed;
+
+    Vector2 movement;
+    Rigidbody2D rb;
     Animator myAnimator;
-    CapsuleCollider2D capsuleCollider2D;
+    CapsuleCollider2D capsuleCollider;
+    float gravityScaleAtStart;
+
+
     InputAction jumpAction;
     InputActionAsset inputActionAsset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gravityScaleAtStart = rb.gravityScale;
         myAnimator = GetComponent<Animator>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         inputActionAsset = InputSystem.actions;
         jumpAction = InputSystem.actions.FindAction("Jump");
     }
@@ -35,10 +41,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpAction.IsPressed())
         {
-            //if (!capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
-            //{
-            //    return;
-            //}
+            if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            {
+                return;
+            }
             if (jumpAction.IsPressed())
             {
                 rb.linearVelocity += new Vector2(0f, jumpForce);
@@ -70,13 +76,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnJump(InputValue input)
+    void OnJump(InputValue value)
     {
-        if (!capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
-        if(input.isPressed)
+        if(value.isPressed)
         {
             rb.linearVelocity += new Vector2(0f, jumpForce);
             
@@ -85,10 +91,14 @@ public class PlayerMovement : MonoBehaviour
     void ClimbLadder()
     {
         Vector2 climbVelocity = new Vector2(rb.linearVelocity.x * moveSpeed, movement.y *climbingSpeed);  // Get current velocity
-        rb.linearVelocity = climbVelocity;  // Apply movement to Rigidbody2D 
+        rb.linearVelocity = climbVelocity;  // Apply movement to Rigidbody2D
+                                            // 
+        rb.gravityScale = 1f;
+        myAnimator.SetBool("isClimbing", Mathf.Abs(rb.linearVelocity.y) > Mathf.Epsilon);  // Update animator based on vertical speed
 
-        if (!capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
+            rb.gravityScale = gravityScaleAtStart;
             return;
         }
         
