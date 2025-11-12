@@ -3,8 +3,8 @@ using UnityEngine.Rendering;
 
 public class SpikeScript : MonoBehaviour
 {
-    
 
+    Player = GameObject
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +16,12 @@ public class SpikeScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-          //  Destroy(Player);
+           Destroy(Player);
         }
+    }
+
+    private void Update()
+    {
+        
     }
 }

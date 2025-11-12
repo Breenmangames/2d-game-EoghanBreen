@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Windows;
 using static UnityEngine.Rendering.DebugUI;
 
+
 public class PlayerMovement : MonoBehaviour
 {
    
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D capsuleCollider;
     float gravityScaleAtStart;
 
-
+    InputAction AttackAction;
     InputAction jumpAction;
     InputActionAsset inputActionAsset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,10 +31,12 @@ public class PlayerMovement : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         inputActionAsset = InputSystem.actions;
         jumpAction = InputSystem.actions.FindAction("Jump");
+        AttackAction = InputSystem.actions.FindAction("Attack");
+
     }
 
     // Update is called once per frame
-    void Update()
+   public void Update()
     {
         Run();
         FlipPlayer();
@@ -50,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity += new Vector2(0f, jumpForce);
             }
         }
-        //OnJump();
+        
     }
 
     void OnMove(InputValue value)  // Input System action callback to get movement input

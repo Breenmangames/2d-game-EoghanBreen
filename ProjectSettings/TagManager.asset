@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Ground
   - Background
-  - 
+  - Spike
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 2722156201
+    locked: 0
+  - name: Spike
+    uniqueID: 4268814049
     locked: 0
   - name: Climbing
     uniqueID: 977002933
