@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
     CapsuleCollider2D capsuleCollider;
     float gravityScaleAtStart;
+    BoxCollider2D jumpCollider2D;
 
     InputAction AttackAction;
     InputAction jumpAction;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         inputActionAsset = InputSystem.actions;
         jumpAction = InputSystem.actions.FindAction("Jump");
         AttackAction = InputSystem.actions.FindAction("Attack");
+        jumpCollider2D = GetComponent<BoxCollider2D>();
 
     }
 
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpAction.IsPressed())
         {
-            if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            if (!jumpCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
             {
                 return;
             }
@@ -81,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!jumpCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
@@ -99,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 1f;
         myAnimator.SetBool("isClimbing", Mathf.Abs(rb.linearVelocity.y) > Mathf.Epsilon);  // Update animator based on vertical speed
 
-        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!jumpCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             rb.gravityScale = gravityScaleAtStart;
             return;
