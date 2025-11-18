@@ -16,7 +16,7 @@ TagManager:
   - Background
   - Spike
   - Bounce
-  - 
+  - Enemies
   - 
   - 
   - 
@@ -47,14 +47,17 @@ TagManager:
   - name: Water
     uniqueID: 4209972171
     locked: 0
-  - name: Platforms
-    uniqueID: 2722156201
-    locked: 0
   - name: Spike
     uniqueID: 4268814049
     locked: 0
+  - name: Ground
+    uniqueID: 2722156201
+    locked: 0
   - name: Climbing
     uniqueID: 977002933
+    locked: 0
+  - name: Enemies
+    uniqueID: 3532080863
     locked: 0
   - name: Player
     uniqueID: 425629465

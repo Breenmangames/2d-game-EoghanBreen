@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
-   
+    private const float V = 0f;
     [SerializeField] float moveSpeed;    
     [SerializeField] float jumpForce; 
     [SerializeField] float climbingSpeed;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D capsuleCollider;
     float gravityScaleAtStart;
     BoxCollider2D jumpCollider2D;
+    bool isAlive = true;
+
 
     InputAction AttackAction;
     InputAction jumpAction;
@@ -40,9 +43,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
    public void Update()
     {
-        Run();
+
+        if (!isAlive) 
+        {
+            return; 
+        }
+
+        Run(GetPVelocity());
         FlipPlayer();
         ClimbLadder();
+        Die();
+
+
+        Vector3 move = new Vector3(movement.x, 0f, 0f);
+       // transform.Translate(move * moveSpeed * Time.deltaTime);
 
         if (jumpAction.IsPressed())
         {
@@ -50,26 +64,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
-            if (jumpAction.IsPressed())
+            else
             {
-                rb.linearVelocity += new Vector2(0f, jumpForce);
+                if (jumpAction.IsPressed())
+                {
+                    rb.linearVelocity += new Vector2(V, jumpForce);
+                }
             }
+            
         }
         
     }
 
     void OnMove(InputValue value)  // Input System action callback to get movement input
     {
+        if (!isAlive) 
+        {
+            return; 
+        }
         movement = value.Get<Vector2>();  // Store movement input
          
     }
 
-    void Run()
+    private Vector2 GetPVelocity()
     {
-        Vector2 pVelocity = new Vector2(movement.x *moveSpeed, rb.linearVelocity.y);  // Get current velocity
+        return new Vector2(movement.x * moveSpeed,  V);
+    }
+
+    void Run(Vector2 PVelocity)
+    {
         rb.linearVelocity = movement;  // Apply movement to Rigidbody2D 
-        bool hasHorizontalSpeed = Mathf.Abs(rb.linearVelocity.x) > Mathf.Epsilon;
-        myAnimator.SetBool("isRunning", Mathf.Abs(rb.linearVelocity.x) > Mathf.Epsilon);  // Update animator based on horizontal speed
+        bool hasHorizontalSpeed = Mathf.Abs((rb.linearVelocity.x)+V) > Mathf.Epsilon;
+        myAnimator.SetBool("isRunning", hasHorizontalSpeed);  // Update animator based on horizontal speed
     }
 
     void FlipPlayer()
@@ -81,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnJump(InputValue value)
+    /*void OnJump(InputValue value)
     {
         if (!jumpCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
@@ -92,20 +118,29 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity += new Vector2(0f, jumpForce);
             
         } 
-    }
+    }*/
     void ClimbLadder()
     {
-        Vector2 climbVelocity = new Vector2(rb.linearVelocity.x * moveSpeed, movement.y *climbingSpeed);  // Get current velocity
-        rb.linearVelocity = climbVelocity;  // Apply movement to Rigidbody2D
-                                            // 
+        // Update animator based on vertical speed
         rb.gravityScale = 1f;
-        myAnimator.SetBool("isClimbing", Mathf.Abs(rb.linearVelocity.y) > Mathf.Epsilon);  // Update animator based on vertical speed
-
         if (!jumpCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             rb.gravityScale = gravityScaleAtStart;
             return;
         }
-        
+        else
+        {
+            Vector2 climbVelocity = new(rb.linearVelocity.x * moveSpeed, movement.y * climbingSpeed);
+            myAnimator.SetBool("isClimbing", Mathf.Abs(rb.linearVelocity.y) > Mathf.Epsilon);
+            // Get current velocity
+        } 
     }
+    void Die()
+    {
+        if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        {
+            isAlive = false;
+        }
+    }
+
 }
