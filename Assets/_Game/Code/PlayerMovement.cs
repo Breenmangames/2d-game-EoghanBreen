@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
-using UnityEngine.Windows;
+
 using static UnityEngine.Rendering.DebugUI;
 
 
@@ -13,8 +13,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed;    
     [SerializeField] float jumpForce; 
     [SerializeField] float climbingSpeed;
+    private float moveInput;
 
-    Vector2 movement;
+    [Header("Ground Check")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
+
+
     Rigidbody2D rb;
     Animator myAnimator;
     CapsuleCollider2D capsuleCollider;
@@ -37,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         AttackAction = InputSystem.actions.FindAction("Attack");
         jumpCollider2D = GetComponent<BoxCollider2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
 
@@ -49,14 +57,18 @@ public class PlayerMovement : MonoBehaviour
             return; 
         }
 
-        Run(GetPVelocity());
+        //Run(GetPVelocity());
         FlipPlayer();
         ClimbLadder();
         Die();
 
 
-        Vector3 move = new Vector3(movement.x, 0f, 0f);
-       // transform.Translate(move * moveSpeed * Time.deltaTime);
+        // Get horizontal input
+        moveInput = Input.GetAxisRaw("Horizontal");
+
+        // Check if grounded
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
 
         if (jumpAction.IsPressed())
         {
@@ -76,27 +88,33 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    void OnMove(InputValue value)  // Input System action callback to get movement input
+    private void FixedUpdate()
     {
-        if (!isAlive) 
-        {
-            return; 
-        }
-        movement = value.Get<Vector2>();  // Store movement input
-         
+        // Apply horizontal movement
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
-    private Vector2 GetPVelocity()
-    {
-        return new Vector2(movement.x * moveSpeed,  V);
-    }
+    /* void OnMove(InputValue value)  // Input System action callback to get movement input
+     {
+         if (!isAlive) 
+         {
+             return; 
+         }
+         movement = value.Get<Vector2>();  // Store movement input
 
-    void Run(Vector2 PVelocity)
-    {
-        rb.linearVelocity = movement;  // Apply movement to Rigidbody2D 
-        bool hasHorizontalSpeed = Mathf.Abs((rb.linearVelocity.x)+V) > Mathf.Epsilon;
-        myAnimator.SetBool("isRunning", hasHorizontalSpeed);  // Update animator based on horizontal speed
-    }
+     }
+
+     private Vector2 GetPVelocity()
+     {
+         return new Vector2(movement.x * moveSpeed,  V);
+     }
+
+     void Run(Vector2 PVelocity)
+     {
+         rb.linearVelocity = movement;  // Apply movement to Rigidbody2D 
+         bool hasHorizontalSpeed = Mathf.Abs((rb.linearVelocity.x)+V) > Mathf.Epsilon;
+         myAnimator.SetBool("isRunning", hasHorizontalSpeed);  // Update animator based on horizontal speed
+     }*/
 
     void FlipPlayer()
     {
@@ -122,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
     void ClimbLadder()
     {
         // Update animator based on vertical speed
+        
         rb.gravityScale = 1f;
         if (!jumpCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
@@ -130,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Vector2 climbVelocity = new(rb.linearVelocity.x * moveSpeed, movement.y * climbingSpeed);
+            Vector2 climbVelocity = new(rb.linearVelocity.x * moveSpeed, rb.linearVelocity.y * climbingSpeed);
             myAnimator.SetBool("isClimbing", Mathf.Abs(rb.linearVelocity.y) > Mathf.Epsilon);
             // Get current velocity
         } 
