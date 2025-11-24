@@ -621,7 +621,7 @@ Transform:
   m_GameObject: {fileID: 409767582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.992796, y: -2.6235073, z: 0.37220955}
+  m_LocalPosition: {x: -4.5856466, y: -2.6172, z: 0.37220955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10509,6 +10509,7 @@ GameObject:
   - component: {fileID: 1172950694}
   - component: {fileID: 1172950693}
   - component: {fileID: 1172950695}
+  - component: {fileID: 1172950696}
   m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
@@ -31387,6 +31388,20 @@ PolygonCollider2D:
       - {x: 113.00264, y: 17.788252}
       - {x: 113.0443, y: 35.89471}
   m_UseDelaunayMesh: 0
+--- !u!114 &1172950696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172950691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85948407dd61e1f4882aec63758659e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 409767584}
+  followTarget: {fileID: 1317627875}
 --- !u!1001 &1222624170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31441,11 +31456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4590155149950073797, guid: 071ac2f066e0e424aa8e1fc81bdf4853, type: 3}
       propertyPath: jumpForce
-      value: 0.1
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4590155149950073797, guid: 071ac2f066e0e424aa8e1fc81bdf4853, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4590155149950073797, guid: 071ac2f066e0e424aa8e1fc81bdf4853, type: 3}
       propertyPath: groundCheck
@@ -35950,6 +35965,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2091849441025648534, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6741306
+      objectReference: {fileID: 0}
+    - target: {fileID: -2091849441025648534, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.24368179
+      objectReference: {fileID: 0}
+    - target: {fileID: -2091849441025648534, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.79073256
+      objectReference: {fileID: 0}
     - target: {fileID: 2704309278839869400, guid: e2114afb6e19849489814287a0a57706, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.25
@@ -35995,7 +36022,31 @@ PrefabInstance:
       value: EnemyWizardIdle
       objectReference: {fileID: 0}
     - target: {fileID: 5543970303917273190, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543970303917273190, guid: e2114afb6e19849489814287a0a57706, type: 3}
       propertyPath: m_UseFullKinematicContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180280517502879015, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Size.x
+      value: 0.16042897
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180280517502879015, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8233429
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180280517502879015, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.15591416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180280517502879015, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.46086472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180280517502879015, guid: e2114afb6e19849489814287a0a57706, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8829098259587817521, guid: e2114afb6e19849489814287a0a57706, type: 3}
