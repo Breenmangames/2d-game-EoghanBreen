@@ -34,23 +34,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.5536
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.4949
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.06358755
+      value: -4.63
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.92001534
+      value: 7.93
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -93,6 +93,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6180280517502879015}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7420520557717716766}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6107969928612831543}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: cd14ffdc7985c39449395df1485f37a4, type: 3}
 --- !u!1 &2912237388418557885 stripped
 GameObject:
@@ -109,7 +115,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 2912237388418557885}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
@@ -122,7 +128,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -160,8 +166,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.19100098, y: 0.78952396}
-  m_Size: {x: 0.7682674, y: 1.328983}
+  m_Offset: {x: 0.26304722, y: 0.7891558}
+  m_Size: {x: 0.77868015, y: 1.3684443}
   m_Direction: 0
 --- !u!61 &6180280517502879015
 BoxCollider2D:
@@ -193,11 +199,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.69991606, y: 0.6522035}
+  m_Offset: {x: 0.70561934, y: 0.21542096}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.65853655, y: -0.07017544}
@@ -207,5 +213,33 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.28766787, y: 1.151338}
+  m_Size: {x: 0.16657156, y: 0.9597844}
   m_EdgeRadius: 0
+--- !u!114 &7420520557717716766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2912237388418557885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7fe446645fb0d408ca844d0f2c65ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+--- !u!114 &6107969928612831543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2912237388418557885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13137479b69d4914897b84055c93e8b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MaxHealth: 1
+  _isAlive: 1
+  _Health: 100
