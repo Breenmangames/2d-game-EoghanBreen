@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8252394445095358892}
   - component: {fileID: 3491648066259127645}
+  - component: {fileID: 6980390296236224071}
   m_Layer: 0
   m_Name: Darryl Coin
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 425629465
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -106448673373725067, guid: bfe33c0fbcca9334d9ec885a1afeed61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,3 +88,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!111 &6980390296236224071
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689648840817509525}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 68ed32a1ee32695468f9996a31ad9a89, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 68ed32a1ee32695468f9996a31ad9a89, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0

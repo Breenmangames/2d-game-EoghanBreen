@@ -9,6 +9,8 @@ public class Damage : MonoBehaviour
     [SerializeField]
     private bool _isAlive = true;
 
+
+
     Animator Animator;
 
     public bool isAlive
@@ -63,11 +65,13 @@ public class Damage : MonoBehaviour
         Animator = GetComponent<Animator>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+   
+    public void Hit(int damage)
     {
-        
+        if (isAlive &&Health <0)
+        {
+            Health -= damage;
+        }
     }
 
-    // Update is called once per frame
-    
 }

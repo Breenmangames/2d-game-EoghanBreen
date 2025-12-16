@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
+  - Pickups
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - outside front layer
   - outside middle layer
   - outside far layer
-  - 
-  - 
+  - EnemyHitbox
+  - Pickups
   - 
   - 
   - 
