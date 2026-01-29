@@ -13,6 +13,10 @@ public class Damage : MonoBehaviour
 
     Animator Animator;
 
+
+ 
+
+    private bool isInvincible = false;
     public bool isAlive
         { 
         get
@@ -39,6 +43,8 @@ public class Damage : MonoBehaviour
 
     [SerializeField]
     private float _Health = 100;
+    private float timeSinceHit= 0f;
+    public float invincibilityTimer = 0.25f;
 
     public float Health
 
@@ -59,7 +65,14 @@ public class Damage : MonoBehaviour
         }
     }
 
-
+    public void hit(int damage)
+    {
+        if (isAlive)
+        {
+            Health -= damage;
+            isInvincible = true;
+        }
+    }
     private void Awake()
     {
         Animator = GetComponent<Animator>();
@@ -68,10 +81,30 @@ public class Damage : MonoBehaviour
    
     public void Hit(int damage)
     {
-        if (isAlive &&Health <0)
+        if (isAlive)
         {
             Health -= damage;
+            isInvincible = true;
         }
     }
 
+
+    private void Update()
+    {
+
+        if (isInvincible)
+        {
+            if (timeSinceHit > invincibilityTimer)
+            {
+                isInvincible = false;
+                timeSinceHit = 0;
+
+            }//invincibility timer logic here
+        }
+        timeSinceHit += Time.deltaTime;
+        Hit(10);
+    }
+   
+  
 }
+

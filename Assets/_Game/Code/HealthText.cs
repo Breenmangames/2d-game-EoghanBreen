@@ -18,7 +18,8 @@ public class HealthText : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
         textMeshPro = GetComponent<TextMeshProUGUI>();
-        startColor = textMeshPro.color;
+        Color color = textMeshPro.color;
+        startColor = color;
     }
 
     private void Update()
